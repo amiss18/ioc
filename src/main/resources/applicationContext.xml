@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="address" class="org.example.model.Address">
+        <constructor-arg value="888 rue de Brest"/>
+        <constructor-arg value="35000"/>
+        <constructor-arg value="Rennes"/>
+
+    </bean>
+   <!-- <bean id = "person" class = "org.example.model.Person" >
+        <constructor-arg name="id" value="1" type="int"/>
+        <constructor-arg name="name" value="titi" type="String"/>
+        <constructor-arg>
+            <ref bean="address"/>
+        </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>Foot</value>
+                <value>Basket</value>
+                <value>Hand</value>
+                <value>Tennis</value>
+            </list>
+        </constructor-arg>
+    </bean>-->
+
+    <bean id = "person" class = "org.example.model.Person" >
+        <property name="id" value="2"/>
+        <property name="name" value="John Doe"/>
+        <property name="address" ref="address"/>
+        <property name="sports">
+            <list>
+                <value>Foot</value>
+                <value>Basket</value>
+                <value>Hand</value>
+                <value>Tennis</value>
+            </list>
+        </property>
+
+    </bean>
+
+    <!-- chargement du fichier /home/x//config.properties -->
+    <bean id="config" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:${MY_CONFIG_DB}</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="false"/>
+    </bean>
+
+
+
+</beans>
